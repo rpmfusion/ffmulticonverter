@@ -1,6 +1,6 @@
 Name:       ffmulticonverter
 Version:    1.8.0
-Release:    16%{?dist}
+Release:    17%{?dist}
 Summary:    GUI File Format Converter
 
 License:    GPLv3+
@@ -59,6 +59,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_mandir}/man1/%{name}.1.*
 
 %changelog
+* Wed Feb 03 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.8.0-17
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Mon Aug 17 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.8.0-16
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
