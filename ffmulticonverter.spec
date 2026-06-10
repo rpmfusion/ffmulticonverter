@@ -1,6 +1,6 @@
 Name:       ffmulticonverter
 Version:    1.8.0
-Release:    30%{?dist}
+Release:    31%{?dist}
 Summary:    GUI File Format Converter
 
 License:    GPLv3+
@@ -10,7 +10,6 @@ Source0:    http://sourceforge.net/projects/ffmulticonv/files/%{name}-%{version}
 BuildArch:  noarch
 
 BuildRequires:  pkgconfig(python3)
-BuildRequires:  python3-setuptools
 BuildRequires:  desktop-file-utils
 
 Requires:   python3-qt5
@@ -35,30 +34,34 @@ Features:
 %prep
 %autosetup
 
+%generate_buildrequires
+%pyproject_buildrequires
 
 %build
-%py3_build
+%pyproject_wheel
 
 %install
-%py3_install
+%pyproject_install
+%pyproject_save_files ffmulticonverter
 
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
-%files
+%files -f %{pyproject_files}
 %doc ChangeLog README.txt AUTHORS TRANSLATORS
 %license COPYING
 %{_bindir}/%{name}
-%{python3_sitelib}/%{name}-%version-py%{python3_version}.egg-info
-%{python3_sitelib}/%{name}
 %{_datadir}/applications/*.desktop
 %{_datadir}/%{name}
 %{_datadir}/pixmaps/%{name}.png
 %{_mandir}/man1/%{name}.1.*
 
 %changelog
+* Wed Jun 10 2026 Leigh Scott <leigh123linux@gmail.com> - 1.8.0-31
+- Rebuild for python-3.15
+
 * Mon Feb 02 2026 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.8.0-30
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_44_Mass_Rebuild
 
